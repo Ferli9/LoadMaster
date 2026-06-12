@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.loadmaster.gui.TesterController" style="-fx-background-color: #f4f4f4;">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    
+    <HBox alignment="CENTER_LEFT" spacing="20.0">
+        <Button text="⬅ Volver al Menú" onAction="#volverAlMenu" style="-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" />
+        <Label text="LoadMaster Engineering" style="-fx-font-weight: bold;">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+    </HBox>
+
+    <HBox spacing="20.0" style="-fx-background-color: white; -fx-padding: 15; -fx-border-color: #ddd; -fx-border-radius: 5;">
+        <children>
+            <GridPane hgap="10.0" vgap="10.0">
+                <columnConstraints>
+                    <ColumnConstraints prefWidth="140.0" />
+                    <ColumnConstraints prefWidth="250.0" />
+                </columnConstraints>
+                <children>
+                    <Label text="Nombre del Ingeniero:" />
+                    <TextField fx:id="txtTesterNombre" promptText="Ej. Licona Castillo..." GridPane.columnIndex="1" />
+                    
+                    <Label text="Nombre de Prueba:" GridPane.rowIndex="1" />
+                    <TextField fx:id="txtNombrePrueba" promptText="Ej: Login Test V1" GridPane.rowIndex="1" GridPane.columnIndex="1" />
+                    
+                    <Label text="URL del Servidor:" GridPane.rowIndex="2" />
+                    <TextField fx:id="txtUrl" promptText="http://ejemplo.com" GridPane.rowIndex="2" GridPane.columnIndex="1" />
+                    
+                    <Label text="Usuarios Concurrentes:" GridPane.rowIndex="3" />
+                    <TextField fx:id="txtUsuarios" promptText="Número de hilos" GridPane.rowIndex="3" GridPane.columnIndex="1" />
+                    
+                    <Label text="Duración (segundos):" GridPane.rowIndex="4" />
+                    <TextField fx:id="txtDuracion" promptText="Tiempo de estrés" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+                </children>
+            </GridPane>
+            
+            <VBox spacing="10.0" alignment="CENTER">
+                <Button fx:id="btnPing" text="Validar Endpoint (Ping)" onAction="#handlePing" prefWidth="200.0" style="-fx-background-color: #607d8b; -fx-text-fill: white;" />
+                <Button fx:id="btnIniciar" text="INICIAR STRESS TEST" onAction="#handleIniciar" prefWidth="200.0" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;" />
+                <Button fx:id="btnAbortar" text="ABORTAR OPERACIÓN" onAction="#handleAbortar" prefWidth="200.0" disable="true" style="-fx-background-color: #f44336; -fx-text-fill: white;" />
+                <Button fx:id="btnLimpiar" text="Limpiar Gráfica" onAction="#handleLimpiar" prefWidth="200.0" />
+            </VBox>
+        </children>
+    </HBox>
+
+    <VBox spacing="5.0" VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-padding: 10; -fx-border-color: #ddd;">
+        <Label text="Monitoreo de Latencia en Tiempo Real" style="-fx-font-style: italic;" />
+       <LineChart fx:id="chartLatencia" animated="false" VBox.vgrow="ALWAYS">
+            <xAxis>
+                <NumberAxis fx:id="xAxis" label="Tiempo (Segundos)" side="BOTTOM" />
+            </xAxis>
+            <yAxis>
+                <NumberAxis label="Latencia (ms)" side="LEFT" />
+            </yAxis>
+        </LineChart>
+    </VBox>
+
+    <HBox spacing="15.0" alignment="CENTER_LEFT">
+        <ProgressBar fx:id="progressTest" prefWidth="400.0" progress="0.0" />
+        <Label fx:id="lblStatus" text="Estado: Listo para iniciar" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="lblPercentiles" text="Min: 0ms | Max: 0ms | Prom: 0ms" style="-fx-font-weight: bold;" />
+    </HBox>
+</VBox>

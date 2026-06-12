@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<VBox spacing="15.0" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.loadmaster.gui.SysAdminController" style="-fx-background-color: #f4f4f4;">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <HBox alignment="CENTER_LEFT" spacing="20.0">
+        <Button text="⬅ Volver al Menú" onAction="#volverAlMenu" style="-fx-background-color: #7f8c8d; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" />
+        <Label text="LoadMaster Engineering" style="-fx-font-weight: bold;">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+    </HBox>
+
+    <HBox spacing="15.0" alignment="CENTER_LEFT" style="-fx-background-color: white; -fx-padding: 15; -fx-border-color: #ddd; -fx-border-radius: 5;">
+        <Button text="Actualizar Tabla" onAction="#cargarDatos" style="-fx-background-color: #2196F3; -fx-text-fill: white;" prefWidth="150.0" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button text="Exportar a CSV" onAction="#exportarCSV" style="-fx-background-color: #4CAF50; -fx-text-fill: white;" prefWidth="150.0" />
+        <Button text="Generar Reporte PDF" onAction="#generarPDF" style="-fx-background-color: #f44336; -fx-text-fill: white;" prefWidth="180.0" />
+    </HBox>
+
+    <TableView fx:id="tablaHistorial" VBox.vgrow="ALWAYS" style="-fx-font-size: 14px;">
+        <columns>
+            <TableColumn fx:id="colId" text="ID" prefWidth="50" />
+            <TableColumn fx:id="colNombre" text="Nombre Prueba" prefWidth="180" />
+            <TableColumn fx:id="colFecha" text="Fecha" prefWidth="160" />
+            <TableColumn fx:id="colUsuarios" text="Usuarios" prefWidth="80" />
+            <TableColumn fx:id="colRafaga" text="Duración (s)" prefWidth="100" />
+            <TableColumn fx:id="colPromedio" text="Latencia Prom" prefWidth="120" />
+            <TableColumn fx:id="colUptime" text="Uptime (%)" prefWidth="100" />
+            <TableColumn fx:id="colTester" text="Tester" prefWidth="160" />
+        </columns>
+    </TableView>
+</VBox>
